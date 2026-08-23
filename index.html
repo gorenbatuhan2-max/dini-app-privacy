@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dini App Gizlilik Politikası</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Work+Sans:wght@400;500;600;700&display=swap">
+<style>
+  :root {
+    --bg: #f6f8f6;
+    --paper: #ffffff;
+    --text: #1c2b22;
+    --text-muted: #55655b;
+    --text-faint: #869488;
+    --accent: #1a472a;
+    --accent-soft: #e7efe8;
+    --gold: #96742a;
+    --divider: #dde4de;
+    --focus: #1a472a;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10160f;
+      --paper: #161f16;
+      --text: #e9efe7;
+      --text-muted: #a7b3a5;
+      --text-faint: #6f7c6f;
+      --accent: #6fbf8a;
+      --accent-soft: #1c2b22;
+      --gold: #d1ac5c;
+      --divider: #2a352a;
+      --focus: #6fbf8a;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #10160f;
+    --paper: #161f16;
+    --text: #e9efe7;
+    --text-muted: #a7b3a5;
+    --text-faint: #6f7c6f;
+    --accent: #6fbf8a;
+    --accent-soft: #1c2b22;
+    --gold: #d1ac5c;
+    --divider: #2a352a;
+    --focus: #6fbf8a;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Work Sans", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration-thickness: 1.5px; text-underline-offset: 2px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 3px; }
+
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+  }
+
+  header.doc-head {
+    padding-bottom: 32px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .mark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .mark svg { flex: none; }
+
+  .mark span {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    color: var(--accent);
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 10px;
+  }
+
+  h1 {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(28px, 4.4vw, 38px);
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0 0 14px;
+    color: var(--text);
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  .meta strong { color: var(--text); font-weight: 600; }
+
+  .lede {
+    font-size: 17px;
+    color: var(--text-muted);
+    max-width: 62ch;
+    margin: 18px 0 0;
+  }
+
+  nav.toc {
+    background: var(--paper);
+    border: 1px solid var(--divider);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-bottom: 48px;
+  }
+
+  nav.toc p {
+    margin: 0 0 12px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  nav.toc ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    columns: 2;
+    column-gap: 24px;
+  }
+
+  nav.toc li { break-inside: avoid; margin-bottom: 8px; }
+
+  nav.toc a {
+    color: var(--text);
+    font-size: 14.5px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  nav.toc a:hover { color: var(--accent); text-decoration: underline; }
+  nav.toc .n { color: var(--text-faint); font-variant-numeric: tabular-nums; margin-right: 8px; }
+
+  section.clause {
+    padding: 34px 0;
+    border-bottom: 1px solid var(--divider);
+    scroll-margin-top: 20px;
+  }
+  section.clause:last-of-type { border-bottom: none; }
+
+  .clause-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .clause-num {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--gold);
+    flex: none;
+    font-variant-numeric: tabular-nums;
+  }
+
+  h2 {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-weight: 600;
+    font-size: 21px;
+    letter-spacing: -0.005em;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .clause p { margin: 0 0 12px; color: var(--text); max-width: 66ch; }
+  .clause p:last-child { margin-bottom: 0; }
+  .clause p.muted { color: var(--text-muted); font-size: 15px; }
+
+  .clause ul { margin: 12px 0; padding-left: 0; list-style: none; max-width: 64ch; }
+  .clause li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 9px;
+    color: var(--text);
+  }
+  .clause li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.55;
+  }
+
+  .data-table {
+    margin-top: 16px;
+    border: 1px solid var(--divider);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--paper);
+  }
+  .data-row {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 4px 16px;
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .data-row:last-child { border-bottom: none; }
+  .data-row .k { font-weight: 600; font-size: 14px; color: var(--text); }
+  .data-row .v { font-size: 14px; color: var(--text-muted); }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 3px 10px 3px 8px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .pill.gold { color: var(--gold); }
+  .pill svg { width: 12px; height: 12px; }
+
+  .contact-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 32px;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    border: 1px solid var(--divider);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-top: 14px;
+  }
+  .contact-card .label { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 4px; }
+  .contact-card .value { font-family: "Source Serif 4", Georgia, serif; font-size: 18px; font-weight: 600; }
+  .contact-card a.value { text-decoration: none; }
+
+  footer.doc-foot {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--divider);
+    font-size: 13px;
+    color: var(--text-faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @media (max-width: 560px) {
+    nav.toc ol { columns: 1; }
+    .data-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header class="doc-head">
+    <div class="mark">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="13" cy="13" r="12" stroke="var(--accent)" stroke-width="1.4"/>
+        <path d="M17.2 13.2c-.4 2.4-2.5 4.2-5 4.2-2.8 0-5-2.2-5-5s2.2-5 5-5c.6 0 1.1.1 1.6.3-1.9.6-3.3 2.4-3.3 4.5s1.4 3.9 3.3 4.5c.9-.3 1.7-.8 2.3-1.5.4-.4.9-1.1 1.1-2z" fill="var(--gold)"/>
+      </svg>
+      <span>Dini App</span>
+    </div>
+    <p class="eyebrow">Yasal Belge</p>
+    <h1>Gizlilik Politikası</h1>
+    <div class="meta">
+      <span>Yürürlük tarihi: <strong>23 Ağustos 2026</strong></span>
+      <span>Geliştirici: <strong>Batuhan Gören</strong></span>
+      <span>Paket kimliği: <strong>com.batuhangoren.diniapp</strong></span>
+    </div>
+    <p class="lede">Bu politika, Dini App mobil uygulamasının hangi verileri neden işlediğini, nerede sakladığını ve kiminle paylaştığını (paylaşmadığını) açık şekilde anlatır.</p>
+  </header>
+
+  <nav class="toc" aria-label="İçindekiler">
+    <p>Bu Sayfada</p>
+    <ol>
+      <li><a href="#giris"><span class="n">01</span>Giriş</a></li>
+      <li><a href="#topladigimiz-veriler"><span class="n">02</span>Topladığımız Veriler</a></li>
+      <li><a href="#cihazda-saklanan"><span class="n">03</span>Cihazınızda Saklananlar</a></li>
+      <li><a href="#ucuncu-taraf"><span class="n">04</span>Üçüncü Taraf Servisler</a></li>
+      <li><a href="#bildirimler"><span class="n">05</span>Bildirimler</a></li>
+      <li><a href="#paylasim"><span class="n">06</span>Veri Paylaşımı ve Satışı</a></li>
+      <li><a href="#guvenlik"><span class="n">07</span>Güvenlik ve Saklama Süresi</a></li>
+      <li><a href="#cocuklar"><span class="n">08</span>Çocukların Gizliliği</a></li>
+      <li><a href="#haklariniz"><span class="n">09</span>Haklarınız</a></li>
+      <li><a href="#degisiklikler"><span class="n">10</span>Politikada Değişiklikler</a></li>
+      <li><a href="#iletisim"><span class="n">11</span>İletişim</a></li>
+    </ol>
+  </nav>
+
+  <section class="clause" id="giris">
+    <div class="clause-head"><span class="clause-num">01</span><h2>Giriş</h2></div>
+    <p>Dini App; namaz vakitleri, kıble yönü, Kuran metni, dualar ve temel İslami bilgiler sunan bir mobil uygulamadır. Uygulama içinde kullanıcı hesabı yoktur; sunucularımızda kişisel veri tutulmaz. Bu belge, uygulamanın cihazınızda ve üçüncü taraf servislerle olan veri akışını açıklar.</p>
+  </section>
+
+  <section class="clause" id="topladigimiz-veriler">
+    <div class="clause-head"><span class="clause-num">02</span><h2>Topladığımız Veriler</h2></div>
+    <p>Uygulama aşağıdaki verilere, yalnızca belirtilen özellik için ve izniniz dahilinde erişir:</p>
+    <div class="data-table">
+      <div class="data-row">
+        <div class="k">Konum (GPS)</div>
+        <div class="v">Namaz vakitlerini ve kıble açısını hesaplamak için tek seferlik konum okunur. Sürekli takip yapılmaz, arka planda konum izlenmez.</div>
+      </div>
+      <div class="data-row">
+        <div class="k">Cihaz pusulası</div>
+        <div class="v">Kıble ekranında yön göstergesi için manyetometre verisi anlık okunur, kaydedilmez.</div>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:14px;">Ad, e-posta, telefon numarası, ödeme bilgisi veya kişisel kimlik bilgisi toplanmaz — çünkü uygulamada bunlara ihtiyaç duyan bir hesap sistemi yoktur.</p>
+  </section>
+
+  <section class="clause" id="cihazda-saklanan">
+    <div class="clause-head"><span class="clause-num">03</span><h2>Cihazınızda Saklananlar</h2></div>
+    <p>Aşağıdaki tercihler yalnızca kendi cihazınızda (AsyncStorage) tutulur ve hiçbir sunucuya gönderilmez:</p>
+    <ul>
+      <li>Seçili şehir ve son konum bazlı namaz vakti/Kuran verisinin çevrimdışı kopyası</li>
+      <li>Favori sureler ve favori dualar</li>
+      <li>Bildirim açık/kapalı tercihi ve tema (açık/koyu) tercihi</li>
+    </ul>
+    <p>Ayarlar → Verileri Sıfırla ile bu verilerin tamamını cihazınızdan tek dokunuşla silebilirsiniz.</p>
+  </section>
+
+  <section class="clause" id="ucuncu-taraf">
+    <div class="clause-head"><span class="clause-num">04</span><h2>Üçüncü Taraf Servisler</h2></div>
+    <p>Uygulama, işlevlerini yerine getirmek için iki dış API kullanır. Bu servislere kimlik bilgisi gönderilmez:</p>
+    <div class="data-table">
+      <div class="data-row">
+        <div class="k">Aladhan API</div>
+        <div class="v">Namaz vakitlerini hesaplamak için yalnızca enlem/boylam koordinatı gönderilir (Diyanet hesap metoduyla). <span class="pill">konum verisi</span></div>
+      </div>
+      <div class="data-row">
+        <div class="k">alquran.cloud</div>
+        <div class="v">Kuran metni ve Diyanet çevirisini almak için sure numarası/arama sorgusu gönderilir; kişisel veri içermez. <span class="pill gold">kişisel veri yok</span></div>
+      </div>
+    </div>
+    <p style="margin-top:14px;">Bu servisler bağımsız üçüncü taraflardır; kendi gizlilik politikaları geçerlidir. Uygulamada reklam SDK'sı veya analitik/izleme yazılımı bulunmaz.</p>
+  </section>
+
+  <section class="clause" id="bildirimler">
+    <div class="clause-head"><span class="clause-num">05</span><h2>Bildirimler</h2></div>
+    <p>Namaz vakti bildirimleri tamamen cihaz üzerinde, yerel olarak planlanır (expo-notifications). Bildirim göndermek için herhangi bir sunucuya veri iletilmez; bildirim izni istediğiniz an cihazınızdan iptal edilebilir.</p>
+  </section>
+
+  <section class="clause" id="paylasim">
+    <div class="clause-head"><span class="clause-num">06</span><h2>Veri Paylaşımı ve Satışı</h2></div>
+    <p><strong>Verileriniz satılmaz, reklam amacıyla paylaşılmaz ve üçüncü taraflarla profil oluşturmak için kullanılmaz.</strong> Yukarıda listelenen API çağrıları dışında hiçbir veri dışarı aktarılmaz.</p>
+  </section>
+
+  <section class="clause" id="guvenlik">
+    <div class="clause-head"><span class="clause-num">07</span><h2>Güvenlik ve Saklama Süresi</h2></div>
+    <p>Tüm kullanıcı tercihleri ve önbellek verisi, işletim sisteminin sağladığı uygulama korumalı depolama alanında tutulur. Veriler yalnızca siz uygulamayı kaldırana veya Ayarlar'dan sıfırlayana kadar cihazınızda kalır; merkezi bir veritabanımız olmadığı için sızıntı riski taşıyan bir sunucu tarafı depolama söz konusu değildir.</p>
+  </section>
+
+  <section class="clause" id="cocuklar">
+    <div class="clause-head"><span class="clause-num">08</span><h2>Çocukların Gizliliği</h2></div>
+    <p>Dini App genel izleyici kitlesine yöneliktir ve bilerek 13 yaş altı çocuklardan kişisel veri toplamaz. Uygulamada hesap oluşturma veya iletişim özelliği bulunmadığından çocuklardan veri toplanmasına yol açacak bir mekanizma yoktur.</p>
+  </section>
+
+  <section class="clause" id="haklariniz">
+    <div class="clause-head"><span class="clause-num">09</span><h2>Haklarınız</h2></div>
+    <p>Konum izni, bildirim izni ve tema/dil tercihlerini cihazınızın Ayarlar uygulamasından veya Dini App içindeki Ayarlar ekranından istediğiniz zaman değiştirebilir, geri alabilirsiniz. Cihazda tutulan tüm verileri Ayarlar → Verileri Sıfırla ile veya uygulamayı silerek kalıcı olarak kaldırabilirsiniz.</p>
+  </section>
+
+  <section class="clause" id="degisiklikler">
+    <div class="clause-head"><span class="clause-num">10</span><h2>Politikada Değişiklikler</h2></div>
+    <p>Bu politika güncellenirse, sayfa üzerindeki "Yürürlük tarihi" güncellenir. Önemli değişikliklerde uygulama içi bir bildirimle ayrıca bilgilendirme yapılabilir.</p>
+  </section>
+
+  <section class="clause" id="iletisim">
+    <div class="clause-head"><span class="clause-num">11</span><h2>İletişim</h2></div>
+    <p>Bu politika veya veri uygulamalarımız hakkında sorularınız için:</p>
+    <div class="contact-card">
+      <div>
+        <div class="label">E-posta</div>
+        <a class="value" href="mailto:gorenbatuhan@gmail.com">gorenbatuhan@gmail.com</a>
+      </div>
+      <div>
+        <div class="label">Geliştirici</div>
+        <div class="value">Batuhan Gören</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="doc-foot">
+    <span>© 2026 Batuhan Gören — Dini App</span>
+    <span>com.batuhangoren.diniapp</span>
+  </footer>
+</div>
+
+</body>
+</html>
