@@ -300,7 +300,7 @@
     <p class="eyebrow">Yasal Belge</p>
     <h1>Gizlilik Politikası</h1>
     <div class="meta">
-      <span>Yürürlük tarihi: <strong>23 Ağustos 2026</strong></span>
+      <span>Yürürlük tarihi: <strong>28 Eylül 2026</strong></span>
       <span>Geliştirici: <strong>Batuhan Gören</strong></span>
       <span>Paket kimliği: <strong>com.batuhangoren.diniapp</strong></span>
     </div>
@@ -335,11 +335,11 @@
     <div class="data-table">
       <div class="data-row">
         <div class="k">Konum (GPS)</div>
-        <div class="v">Namaz vakitlerini ve kıble açısını hesaplamak için tek seferlik konum okunur. Sürekli takip yapılmaz, arka planda konum izlenmez.</div>
+        <div class="v">Namaz vakitlerini ve kıble açısını hesaplamak, yakındaki camileri bulmak için konum okunur: "Konumumu Kullan"a dokunduğunuzda ve Kıble / Yakın Camiler ekranları açıldığında. Sürekli takip yapılmaz, arka planda konum izlenmez. Konum izni vermezseniz seçtiğiniz ilin merkezi kullanılır.</div>
       </div>
       <div class="data-row">
-        <div class="k">Cihaz pusulası</div>
-        <div class="v">Kıble ekranında yön göstergesi için manyetometre verisi anlık okunur, kaydedilmez.</div>
+        <div class="k">Pusula yönü</div>
+        <div class="v">Kıble ekranında yön göstergesi için cihazın yön bilgisi anlık okunur, kaydedilmez.</div>
       </div>
     </div>
     <p class="muted" style="margin-top:14px;">Ad, e-posta, telefon numarası, ödeme bilgisi veya kişisel kimlik bilgisi toplanmaz — çünkü uygulamada bunlara ihtiyaç duyan bir hesap sistemi yoktur.</p>
@@ -347,39 +347,56 @@
 
   <section class="clause" id="cihazda-saklanan">
     <div class="clause-head"><span class="clause-num">03</span><h2>Cihazınızda Saklananlar</h2></div>
-    <p>Aşağıdaki tercihler yalnızca kendi cihazınızda (AsyncStorage) tutulur ve hiçbir sunucuya gönderilmez:</p>
+    <p>Aşağıdaki veriler yalnızca kendi cihazınızda (AsyncStorage) tutulur ve hiçbir sunucuya gönderilmez:</p>
     <ul>
-      <li>Seçili şehir ve son konum bazlı namaz vakti/Kuran verisinin çevrimdışı kopyası</li>
+      <li>Seçili şehir; konumdan seçtiyseniz koordinatınız (vakitler yeniden hesaplanabilsin diye)</li>
+      <li>Namaz vakti, Kuran, Hicrî takvim ve yakın cami verilerinin çevrimdışı kopyası (30 günden eskileri otomatik silinir)</li>
+      <li>Kıldığınız namaz işaretleri, puan ve seri bilgisi</li>
+      <li>"Dua Defteri"ne kendi yazdığınız dualar</li>
       <li>Favori sureler ve favori dualar</li>
-      <li>Bildirim açık/kapalı tercihi ve tema (açık/koyu) tercihi</li>
+      <li>Son 24 saatte cihazınıza ulaşan bildirimlerin listesi</li>
+      <li>Bildirim, tema, renk paleti, yazı boyutu, kâri ve sesli okuma tercihleri</li>
     </ul>
     <p>Ayarlar → Verileri Sıfırla ile bu verilerin tamamını cihazınızdan tek dokunuşla silebilirsiniz.</p>
   </section>
 
   <section class="clause" id="ucuncu-taraf">
     <div class="clause-head"><span class="clause-num">04</span><h2>Üçüncü Taraf Servisler</h2></div>
-    <p>Uygulama, işlevlerini yerine getirmek için iki dış API kullanır. Bu servislere kimlik bilgisi gönderilmez:</p>
+    <p>Uygulama, işlevlerini yerine getirmek için aşağıdaki dış servisleri kullanır. Bu servislere ad, e-posta veya cihaz kimliği gönderilmez; her internet isteğinde olduğu gibi IP adresiniz karşı sunucuya ulaşır:</p>
     <div class="data-table">
       <div class="data-row">
         <div class="k">Aladhan API</div>
-        <div class="v">Namaz vakitlerini hesaplamak için yalnızca enlem/boylam koordinatı gönderilir (Diyanet hesap metoduyla). <span class="pill">konum verisi</span></div>
+        <div class="v">Namaz vakitlerini hesaplamak için enlem/boylam koordinatı ve tarih gönderilir (Diyanet hesap metoduyla). Hicrî takvim ve kandil tarihleri için yalnızca tarih gönderilir. <span class="pill">konum verisi</span></div>
+      </div>
+      <div class="data-row">
+        <div class="k">OpenStreetMap (Overpass API)</div>
+        <div class="v">Yakındaki camileri bulmak için enlem/boylam koordinatı ve arama yarıçapı gönderilir. <span class="pill">konum verisi</span></div>
       </div>
       <div class="data-row">
         <div class="k">alquran.cloud</div>
-        <div class="v">Kuran metni ve Diyanet çevirisini almak için sure numarası/arama sorgusu gönderilir; kişisel veri içermez. <span class="pill gold">kişisel veri yok</span></div>
+        <div class="v">Kuran metni, okunuşu ve Diyanet mealini almak için sure numarası gönderilir. Sure ve ayet araması cihazınızda yapılır. <span class="pill gold">kişisel veri yok</span></div>
+      </div>
+      <div class="data-row">
+        <div class="k">islamic.network</div>
+        <div class="v">Kuran tilavet ses dosyaları için ayet numarası ve seçtiğiniz kâri gönderilir. <span class="pill gold">kişisel veri yok</span></div>
+      </div>
+      <div class="data-row">
+        <div class="k">Apple Haritalar (iOS)</div>
+        <div class="v">Yakın Camiler haritası Apple'ın harita servisiyle gösterilir; haritanın görüntülenen bölgesi Apple'a iletilir ve Apple'ın gizlilik politikası geçerlidir.</div>
       </div>
     </div>
     <p style="margin-top:14px;">Bu servisler bağımsız üçüncü taraflardır; kendi gizlilik politikaları geçerlidir. Uygulamada reklam SDK'sı veya analitik/izleme yazılımı bulunmaz.</p>
+    <p>Yalnızca siz dokunduğunuzda çalışan işlemler: "Yol Tarifi" seçtiğiniz caminin konumuyla Google Haritalar'ı açar; "Paylaş" cihazınızın paylaşım menüsünü, "Bize Bildir" e-posta uygulamanızı açar. Bu uygulamalara geçtikten sonra onların politikaları geçerlidir; siz göndermedikçe hiçbir bilgi iletilmez.</p>
   </section>
 
   <section class="clause" id="bildirimler">
     <div class="clause-head"><span class="clause-num">05</span><h2>Bildirimler</h2></div>
-    <p>Namaz vakti bildirimleri tamamen cihaz üzerinde, yerel olarak planlanır (expo-notifications). Bildirim göndermek için herhangi bir sunucuya veri iletilmez; bildirim izni istediğiniz an cihazınızdan iptal edilebilir.</p>
+    <p>Namaz vakti, nafile namaz, ayet/hadis ve "Allah'ı Hatırlatma" bildirimlerinin tamamı cihaz üzerinde, yerel olarak planlanır (expo-notifications). Bildirim göndermek için herhangi bir sunucuya veri iletilmez; her bildirim türünü Ayarlar'dan ayrı ayrı kapatabilir, bildirim iznini istediğiniz an cihazınızdan iptal edebilirsiniz. Ana ekran widget'ının içeriği de cihazda hazırlanır.</p>
   </section>
 
   <section class="clause" id="paylasim">
     <div class="clause-head"><span class="clause-num">06</span><h2>Veri Paylaşımı ve Satışı</h2></div>
-    <p><strong>Verileriniz satılmaz, reklam amacıyla paylaşılmaz ve üçüncü taraflarla profil oluşturmak için kullanılmaz.</strong> Yukarıda listelenen API çağrıları dışında hiçbir veri dışarı aktarılmaz.</p>
+    <p><strong>Verileriniz satılmaz, reklam amacıyla paylaşılmaz ve üçüncü taraflarla profil oluşturmak için kullanılmaz.</strong> Yukarıda listelenen servis çağrıları ve sizin başlattığınız paylaşımlar dışında hiçbir veri dışarı aktarılmaz.</p>
   </section>
 
   <section class="clause" id="guvenlik">
@@ -389,12 +406,12 @@
 
   <section class="clause" id="cocuklar">
     <div class="clause-head"><span class="clause-num">08</span><h2>Çocukların Gizliliği</h2></div>
-    <p>Dini App genel izleyici kitlesine yöneliktir ve bilerek 13 yaş altı çocuklardan kişisel veri toplamaz. Uygulamada hesap oluşturma veya iletişim özelliği bulunmadığından çocuklardan veri toplanmasına yol açacak bir mekanizma yoktur.</p>
+    <p>Dini App genel izleyici kitlesine yöneliktir ve bilerek 13 yaş altı çocuklardan kişisel veri toplamaz. Uygulamada hesap oluşturma yoktur; "Bize Bildir" yalnızca cihazınızın e-posta uygulamasını açar ve siz göndermedikçe hiçbir bilgi iletilmez. Bu nedenle çocuklardan veri toplanmasına yol açacak bir mekanizma bulunmaz.</p>
   </section>
 
   <section class="clause" id="haklariniz">
     <div class="clause-head"><span class="clause-num">09</span><h2>Haklarınız</h2></div>
-    <p>Konum izni, bildirim izni ve tema/dil tercihlerini cihazınızın Ayarlar uygulamasından veya Dini App içindeki Ayarlar ekranından istediğiniz zaman değiştirebilir, geri alabilirsiniz. Cihazda tutulan tüm verileri Ayarlar → Verileri Sıfırla ile veya uygulamayı silerek kalıcı olarak kaldırabilirsiniz.</p>
+    <p>Konum izni, bildirim izni ve uygulama tercihlerini cihazınızın Ayarlar uygulamasından veya Dini App içindeki Ayarlar ekranından istediğiniz zaman değiştirebilir, geri alabilirsiniz. Cihazda tutulan tüm verileri Ayarlar → Verileri Sıfırla ile veya uygulamayı silerek kalıcı olarak kaldırabilirsiniz.</p>
   </section>
 
   <section class="clause" id="degisiklikler">
